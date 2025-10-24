@@ -18,6 +18,30 @@
       <h3>Deja tu reseña</h3>
       <form [formGroup]="reviewForm" (ngSubmit)="onSubmitReview()" novalidate>
         <div class="form-group">
+          <label for="userName">Tu nombre:</label>
+          <input
+            id="userName"
+            type="text"
+            formControlName="userName"
+            placeholder="Escribe tu nombre..."
+            [class.invalid-field]="userNameControl?.invalid && userNameControl?.touched"
+          />
+
+          @if (userNameControl?.invalid && (userNameControl?.dirty || userNameControl?.touched)) {
+          <div class="error-messages">
+            @if (userNameControl?.errors?.['required']) {
+            <p>El nombre es obligatorio.</p>
+            } @if (userNameControl?.errors?.['minlength']) {
+            <p>
+              El nombre debe tener al menos
+              {{ userNameControl?.errors?.['minlength'].requiredLength }} caracteres.
+            </p>
+            }
+          </div>
+          }
+        </div>
+
+        <div class="form-group">
           <label for="comment">Comentario:</label>
           <textarea
             id="comment"
@@ -43,6 +67,27 @@
 
         <button type="submit" [disabled]="reviewForm.invalid">Enviar Reseña</button>
       </form>
+
+      <!-- Sección de comentarios existentes -->
+      <div class="comments-section">
+        <h4>Reseñas de clientes ({{ productComments().length }})</h4>
+        
+        @if (productComments().length === 0) {
+          <p class="no-comments">No hay reseñas aún. ¡Sé el primero en comentar!</p>
+        } @else {
+          <div class="comments-list">
+            @for (comment of productComments(); track comment.id) {
+              <div class="comment-item">
+                <div class="comment-header">
+                  <strong class="comment-author">{{ comment.userName }}</strong>
+                  <span class="comment-date">{{ comment.date }}</span>
+                </div>
+                <p class="comment-text">{{ comment.comment }}</p>
+              </div>
+            }
+          </div>
+        }
+      </div>
     </div>
   </div>
 </div>
