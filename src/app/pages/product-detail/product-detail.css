@@ -71,3 +71,34 @@
   padding-top: 1rem;
   border-top: 1px solid #eee;
 }
+/* ... (estilos anteriores) ... */
+.review-section h3 {
+  margin-bottom: 1rem;
+}
+.form-group {
+  margin-bottom: 1rem;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 500; /* Un poco menos grueso que bold */
+  color: #444;
+}
+.form-group textarea {
+  width: 100%;
+  padding: 0.6rem; /* Un poco más de padding */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.form-group textarea.invalid-field {
+  /* Estilo cuando es inválido y tocado */
+  border-color: red;
+}
+.error-messages p {
+  color: #d32f2f; /* Rojo oscuro */
+  font-size: 0.85rem;
+  margin: 0.3rem 0 0 0;
+}

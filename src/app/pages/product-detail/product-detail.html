@@ -12,10 +12,39 @@
     <p class="price">{{ product()?.price | currency : 'USD' }}</p>
     <p class="description">{{ product()?.description }}</p>
     <p class="rating">
-      Rating: {{ product()?.rating.rate }}/5
-      <span>({{ product()?.rating.count }} votos)</span>
+      Rating: {{ product()?.rating?.rate }}/5
+      <span>({{ product()?.rating?.count }} votos)</span>
     </p>
-    <div class="review-section"></div>
+    <div class="review-section">
+      <h3>Deja tu reseña</h3>
+      <form [formGroup]="reviewForm" (ngSubmit)="onSubmitReview()" novalidate>
+        <div class="form-group">
+          <label for="comment">Comentario:</label>
+          <textarea
+            id="comment"
+            formControlName="comment"
+            rows="4"
+            placeholder="Escribe al menos 10 caracteres..."
+            [class.invalid-field]="commentControl?.invalid && commentControl?.touched"
+          ></textarea>
+
+          @if (commentControl?.invalid && (commentControl?.dirty || commentControl?.touched)) {
+          <div class="error-messages">
+            @if (commentControl?.errors?.['required']) {
+            <p>El comentario es obligatorio.</p>
+            } @if (commentControl?.errors?.['minlength']) {
+            <p>
+              El comentario debe tener al menos
+              {{ commentControl?.errors?.['minlength'].requiredLength }} caracteres.
+            </p>
+            }
+          </div>
+          }
+        </div>
+
+        <button type="submit" [disabled]="reviewForm.invalid">Enviar Reseña</button>
+      </form>
+    </div>
   </div>
 </div>
 } @else {
