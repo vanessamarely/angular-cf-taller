@@ -1,10 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { Product as ProductService } from '../../services/product';
+import { CommonModule } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { ProductCard } from '../../components/product-card/product-card'; 
 
 @Component({
   selector: 'app-product-list',
-  imports: [],
+  imports: [CommonModule, ProductCard],
   templateUrl: './product-list.html',
   styleUrl: './product-list.css',
 })

@@ -1,1 +1,23 @@
 <p>product-detail works!</p>
+<a routerLink="/products" class="back-link">&larr; Volver a la lista</a>
+
+@if (product()) {
+<div class="product-detail">
+  <div class="image-container">
+    <img [src]="product()?.image" [alt]="product()?.title" />
+  </div>
+  <div class="info-container">
+    <h1>{{ product()?.title }}</h1>
+    <p class="category">{{ product()?.category }}</p>
+    <p class="price">{{ product()?.price | currency : 'USD' }}</p>
+    <p class="description">{{ product()?.description }}</p>
+    <p class="rating">
+      Rating: {{ product()?.rating.rate }}/5
+      <span>({{ product()?.rating.count }} votos)</span>
+    </p>
+    <div class="review-section"></div>
+  </div>
+</div>
+} @else {
+<p class="loading-message">Cargando detalles del producto o producto no encontrado...</p>
+}

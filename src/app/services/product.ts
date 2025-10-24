@@ -23,9 +23,9 @@ export class Product {
     );
   }
   // Obtiene UN producto por su ID
-  getProductById(id: string | number): Observable<Product> {
+  getProductById(id: string | number): Observable<ProductInterface> {
     console.log(`Servicio: Llamando a getProductById con ID: ${id}`);
-    return this.http.get<Product>(`${this.apiUrl}/${id}`).pipe(
+    return this.http.get<ProductInterface>(`${this.apiUrl}/${id}`).pipe(
       tap((product) => console.log(`Servicio: Obtenido producto`, product)),
       catchError(this.handleError) // Añade manejo de errores básico
     );
