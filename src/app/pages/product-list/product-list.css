@@ -1,0 +1,14 @@
+.product-grid {
+  display: grid;
+  /* Crea columnas automáticas que miden entre 220px y 1fr */
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem; /* Más espacio entre tarjetas */
+  margin-top: 1rem;
+}
+
+.loading-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  margin-top: 2rem;
+}

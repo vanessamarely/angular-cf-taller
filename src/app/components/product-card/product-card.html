@@ -1,1 +1,11 @@
-<p>product-card works!</p>
+<div class="product-card">
+    <!-- Enlace al detalle del producto -->
+  <a [routerLink]="['/product', product().id]">
+    <!-- en el src usamos product().image que es un string -->
+    <img [src]="product().image" [alt]="product().title" />
+    <!-- Mostrar el título del producto, limitando a 50 caracteres -->
+    <h3>{{ product().title | slice : 0 : 50 }}{{ product().title.length > 50 ? '...' : '' }}</h3>
+  </a>
+  <!-- Mostrar el precio del producto con formato de moneda -->
+  <p class="price">{{ product().price | currency : 'USD' }}</p>
+</div>
